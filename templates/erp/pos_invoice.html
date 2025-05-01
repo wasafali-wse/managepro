@@ -1,0 +1,121 @@
+{% extends "layout.html" %} 
+
+{% block link%} {% endblock%}
+
+{% block title%}Invoice{% endblock%}
+
+{% block breadcrumb%}
+<div class="breadcrumbs text-sm">
+  <ul>
+    <li><a>pos</a></li>
+    <li>Invoice</li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block heading%}Invoice{%endblock%}
+
+{% block content %}
+
+<div class= 'grid grid-cols-8 gap-2 p-2'>
+  <div class='col-span-8 md:col-span-6 bg-base-300 h-auto rounded-2xl p-1'>
+    <div class='flex justify-between'>
+      <h3 class='text-xl font-bold p-2'>Search...</h3>
+      <input type="number" placeholder="Sno..." class="input input-ghost" />
+      <input type='date' placeholder='Date...' class='input input-ghost'/>'
+      <input type="text" placeholder="Desc..." class="input input-ghost" />
+      <input type="number" placeholder="Amount..." class="input input-ghost " pattern="[0-9]*"/>
+      <select class="select select-ghost">
+        <option selected></option>
+        <option>sales</option>
+        <option>repair</option>ٹ
+        <option>used</option>
+      </select>
+    </div>
+  </div>
+  <div class='col-span-8 md:col-span-2 h-auto rounded-2xl'>
+    <a class="btn btn-block btn-success h-12 rounded-2xl" href="{% url 'customer'%}"><i class="fa-solid fa-plus"></i> New</a>      
+  </div>
+  <div class='col-span-8 md:col-span-5 bg-base-300 h-96 overflow-y-auto rounded-2xl'>
+    <div class="overflow-x-auto">
+      <h3 class='text-xl font-bold p-2'>Filterd </h3>
+      <table class="table table-zebra table-pin-rows">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Job</th>
+            <th>Favorite Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+          <tr>
+            <th>1</th>
+            <td>Cy Ganderton</td>
+            <td>Quality Control Specialist</td>
+            <td>Blue</td>
+          </tr>
+          <!-- row 2 -->
+          <tr>
+            <th>2</th>
+            <td>Hart Hagerty</td>
+            <td>Desktop Support Technician</td>
+            <td>Purple</td>
+          </tr>
+          <!-- row 3 -->
+          <tr>
+            <th>3</th>
+            <td>Brice Swyre</td>
+            <td>Tax Accountant</td>
+            <td>Red</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class='col-span-8 md:col-span-3 bg-base-300 h-96 overflow-y-auto rounded-2xl'>
+    <div class="overflow-x-auto">
+      <h3 class='text-xl font-bold p-2'>Recently Added</h3>
+      <table class="table table-zebra table-pin-rows">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Job</th>
+            <th>Favorite Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+          <tr>
+            <th>1</th>
+            <td>Cy Ganderton</td>
+            <td>Quality Control Specialist</td>
+            <td>Blue</td>
+          </tr>
+          <!-- row 2 -->
+          <tr>
+            <th>2</th>
+            <td>Hart Hagerty</td>
+            <td>Desktop Support Technician</td>
+            <td>Purple</td>
+          </tr>
+          <!-- row 3 -->
+          <tr>
+            <th>3</th>
+            <td>Brice Swyre</td>
+            <td>Tax Accountant</td>
+            <td>Red</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block script%} {%endblock%}

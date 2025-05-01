@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+    <title>managepro</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="font-montserrat">
+    
+    <div class="flex justify-between items-center bg-base-200 p-4 relative">
+        <div><h1 class='text-2xl font-montserrat font-bold'>managepro</h1></div>
+        <div class="border-solid">
+            <input aria-label="Theme" type="checkbox" class="theme-controller btn">
+        </div>
+    </div>
+    <div class="hero h-[60vh] bg-base-900">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold font-montserrat">Simplify Your Business Finances with managepro</h1>
+                <p class="py-6 font-montserrat">An all-in-one solution for invoicing, expense tracking, and customer management. Built Small businesses.</p>
+                <a class='btn btn-outline font-montserret font-bold' href='{% url "login" %}'>Get Started.</a>
+            </div>
+        </div>
+    </div>
+    <div class="h-[26vh] w-full flex justify-center items-center gap-4">
+        <div class=" h-[25vh] w-2/5 rounded-xl border-1 border-solid border-black outline outline-1 outline-offset-2 flex flex-col items-center justify-center p-4">
+                    <i class="fas fa-file-invoice text-4xl mb-2"></i>
+                    <h3 class="font-montserrat font-medium">Invoice Management</h3>
+                </div>
+        <div class=" h-[25vh] w-2/5 rounded-xl border-1 border-solid border-black outline outline-1 outline-offset-2 flex flex-col items-center justify-center p-4 "><i class="fas fa-chart-simple text-4xl mb-2"></i>
+        <h3 class="font-montserrat font-medium">Expense Tracking</h3></div>
+        
+    </div>
+    <div class="h-[26vh] w-full flex justify-center items-center gap-4 mt-4 mb-4">
+        <div class=" h-[25vh] w-2/5 rounded-xl border-1 border-solid border-black outline outline-1 outline-offset-2 flex flex-col items-center justify-center p-4 "><i class="fas fa-users text-4xl mb-2"></i>
+        <h3 class="font-montserrat font-medium">Customer Management</h3></div>
+        <div class=" h-[25vh] w-2/5 rounded-xl border-1 border-solid border-black outline outline-1 outline-offset-2 flex flex-col items-center justify-center p-4 "><i class="fas fa-keyboard text-4xl mb-2"></i>
+        <h3 class="font-montserrat font-medium">Keyboard freiedly</h3></div>
+        
+    </div>
+    <script>
+        const themeController = document.querySelector('.theme-controller');
+        themeController.addEventListener('change', (e) => {
+            const html = document.querySelector('html');
+            html.setAttribute('data-theme', e.target.checked ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

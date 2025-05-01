@@ -1,0 +1,994 @@
+{% load static %}
+<!doctype html>
+<html lang="en" data-theme="synthwave">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Layout{% endblock %}</title>
+        <link href="{% static 'css/output.css' %}" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            crossorigin="anonymous"
+        />
+        {%block link%}{% endblock%}
+    </head>
+
+    <div class="modal" role="dialog" id="my_modal_8">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Settings</h3>
+
+            <div class="divider divider-start">Theme</div>
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Choose a Theme</span>
+                </div>
+                <select class="select select-bordered" id="themeSelector">
+                    <option disabled selected>Select theme</option>
+                    <option value="light">🌞 Light</option>
+                    <option value="dark">🌙 Dark</option>
+
+                    <option value="synthwave">🎵 Synthwave</option>
+                    //
+                    <option value="retro">🕹️ Retro</option>
+                    //
+
+                    <option value="valentine">💘 Valentine</option>
+                    //
+                    <option value="halloween">🎃 Halloween</option>
+                    //
+                </select>
+            </label>
+
+            <div class="modal-action">
+                <a
+                    href="#"
+                    class="btn"
+                    onclick="document.getElementById('my_modal_8').close()"
+                    >Done</a
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="modal w-screen" role="dialog" id="my_modal_9">
+        <div class="modal-box w-full max-w-3xl">
+            <h3 class="text-lg font-bold">Keyboard Shortcuts</h3>
+            <div class="divider divider-start">General</div>
+            <ul class="space-y-1">
+                <li>
+                    <span>Dashboard:</span> <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">D</kbd>
+                </li>
+                <li>
+                    <span>Todo-Goals:</span> <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">T</kbd>
+                </li>
+                <li>
+                    <span>File Manager:</span> <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">M</kbd> + <kbd class="kbd">F</kbd>
+                </li>
+            </ul>
+
+            <div class="divider divider-start">POS</div>
+            <ul class="space-y-1">
+                <li>
+                    Invoice: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">I</kbd>
+                </li>
+                <li>
+                    Extra Income: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">X</kbd>
+                </li>
+                <li>
+                    Quotation: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Q</kbd>
+                </li>
+                <li>
+                    Customer: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">M</kbd> + <kbd class="kbd">C</kbd>
+                </li>
+                <li>
+                    Suppliers: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">S</kbd>
+                </li>
+                <li>
+                    Receipt: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">R</kbd>
+                </li>
+                <li>
+                    Inventory: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">M</kbd> + <kbd class="kbd">N</kbd>
+                </li>
+                <li>
+                    Expenses: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">E</kbd>
+                </li>
+            </ul>
+
+            <div class="divider divider-start">Chat</div>
+            <ul class="space-y-1">
+                <li>
+                    Inbox: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">C</kbd> + <kbd class="kbd">I</kbd>
+                </li>
+                <li>
+                    Sent: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">C</kbd> + <kbd class="kbd">S</kbd>
+                </li>
+            </ul>
+
+            <div class="divider divider-start">Project Management</div>
+            <ul class="space-y-1">
+                <li>
+                    Analytics: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">P</kbd> + <kbd class="kbd">A</kbd>
+                </li>
+                <li>
+                    Projects: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">P</kbd> + <kbd class="kbd">D</kbd>
+                </li>
+                <li>
+                    Members: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">P</kbd> + <kbd class="kbd">M</kbd>
+                </li>
+                <li>
+                    Inventory: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">P</kbd> + <kbd class="kbd">I</kbd>
+                </li>
+                <li>
+                    Expenses: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">P</kbd> + <kbd class="kbd">X</kbd>
+                </li>
+                <li>
+                    Reports: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">P</kbd> + <kbd class="kbd">R</kbd>
+                </li>
+                <li>
+                    Tasks: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">P</kbd> + <kbd class="kbd">T</kbd>
+                </li>
+            </ul>
+
+            <div class="divider divider-start">HR</div>
+            <ul class="space-y-1">
+                <li>
+                    Employee: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">H</kbd> + <kbd class="kbd">E</kbd>
+                </li>
+                <li>
+                    Payroll: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">H</kbd> + <kbd class="kbd">P</kbd>
+                </li>
+                <li>
+                    Benefits: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">H</kbd> + <kbd class="kbd">B</kbd>
+                </li>
+                <li>
+                    Reports: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">H</kbd> + <kbd class="kbd">R</kbd>
+                </li>
+                <li>
+                    Training: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">H</kbd> + <kbd class="kbd">T</kbd>
+                </li>
+                <li>
+                    Recruitment: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">H</kbd> + <kbd class="kbd">N</kbd>
+                </li>
+                <li>
+                    Leave: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">H</kbd> + <kbd class="kbd">L</kbd>
+                </li>
+            </ul>
+
+            <div class="divider divider-start">Finance</div>
+            <ul class="space-y-1">
+                <li>
+                    General Ledger: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">G</kbd>
+                </li>
+                <li>
+                    Fixed Assets: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">A</kbd>
+                </li>
+                <li>
+                    Taxation: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">T</kbd>
+                </li>
+                <li>
+                    Cash Flow: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">C</kbd>
+                </li>
+                <li>
+                    Budgeting: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">B</kbd>
+                </li>
+                <li>
+                    Investments: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">I</kbd>
+                </li>
+                <li>
+                    Financial Statements: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">S</kbd>
+                </li>
+                <li>
+                    Financial Reporting: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">R</kbd>
+                </li>
+                <li>
+                    Risk Management: <kbd class="kbd">Alt</kbd> +
+                    <kbd class="kbd">Z</kbd> + <kbd class="kbd">M</kbd>
+                </li>
+            </ul>
+
+            <div class="modal-action">
+                <a href="#" class="btn">OK</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const themeSelector = document.getElementById("themeSelector");
+
+        themeSelector.addEventListener("change", function () {
+            const theme = this.value;
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("daisyui-theme", theme); // Optional: Save to localStorage
+        });
+
+        // Apply saved theme on page load
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("daisyui-theme");
+            if (savedTheme) {
+                document.documentElement.setAttribute("data-theme", savedTheme);
+                themeSelector.value = savedTheme;
+            }
+        });
+    </script>
+
+
+    {% block center%}
+    {%endblock%}
+    <body class="overflow-hidden">
+        <div class="wrapper flex h-screen w-full">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="w-64 bg-base-200 overflow-y-auto">
+                <ul class="menu p-4 space-y-1 w-full">
+                    <li>
+                        <a href="{% url 'dashboard' %}">
+                            Dashboard
+                            <kbd class="kbd xs float-right">alt</kbd
+                            ><kbd class="kbd xs float-right ml-1">d</kbd>
+                        </a>
+                    </li>
+
+                    <li>
+                        <details open>
+                            <summary>POS</summary>
+                            <ul class="pl-4 space-y-1">
+                                <li>
+                                    <a href="{% url 'pos_invoice' %}"
+                                        >Invoice
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >i</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'extra_income' %}"
+                                        >Extra Income
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >x</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'quotation' %}"
+                                        >Quotation
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >q</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'customer' %}"
+                                        >Customer
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >m</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >c</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'supplier' %}"
+                                        >Suppliers
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >s</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'reciept' %}"
+                                        >Receipt
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >r</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'inventory' %}"
+                                        >Inventory
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >m</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >n</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'expense' %}"
+                                        >Expenses
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >e</kbd
+                                        >
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details close>
+                            <summary>Chat</summary>
+                            <ul class="pl-4 space-y-1">
+                                <li>
+                                    <a href="{% url 'inbox' %}"
+                                        >Inbox
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >c</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >i</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'sent' %}"
+                                        >Sent
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >c</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >s</kbd
+                                        >
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details close>
+                            <summary>Project Management</summary>
+                            <ul class="pl-4 space-y-1">
+                                <li>
+                                    <a
+                                        >Analytics
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >a</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Projects
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >d</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Members
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >m</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Inventory
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >i</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Expenses
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >x</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Reports
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >r</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Tasks
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >t</kbd
+                                        >
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details close>
+                            <summary>HR</summary>
+                            <ul class="pl-4 space-y-1">
+                                <li>
+                                    <a
+                                        >Employee
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >h</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >e</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Payroll
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >h</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >p</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Benefits
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >h</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >b</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Reports
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >h</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >r</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Training
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >h</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >t</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Recruitment
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >h</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >n</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Leave
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >h</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >l</kbd
+                                        >
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details close>
+                            <summary>Finance</summary>
+                            <ul class="pl-4 space-y-1">
+                                <li>
+                                    <a
+                                        >General Ledger
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >g</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Fixed Assets
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >a</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Taxation
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >t</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Cash Flow
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >c</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Budgeting
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >b</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Investments
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >i</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Financial Statements
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >s</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Financial Reporting
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >r</kbd
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        >Risk Management
+                                        <kbd class="kbd xs float-right">alt</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >z</kbd
+                                        ><kbd class="kbd xs float-right ml-1"
+                                            >m</kbd
+                                        >
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'todo' %}"
+                            >Todo-Goals <kbd class="kbd xs float-right">alt</kbd
+                            ><kbd class="kbd xs float-right ml-1">t</kbd>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'file_manager' %}"
+                            >File Manager
+                            <kbd class="kbd xs float-right">alt</kbd
+                            ><kbd class="kbd xs float-right ml-1">m</kbd
+                            ><kbd class="kbd xs float-right ml-1">f</kbd>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Main content -->
+            <div id="main" class="flex-1 flex flex-col overflow-hidden">
+                <!-- Header -->
+                <header
+                    class="h-[9vh] bg-base-200 flex justify-between items-center p-4"
+                >
+                    <div class="flex items-center gap-2">
+                        <button
+                            id="menuToggleButton"
+                            class="btn btn-sm btn-square"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-6 h-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                                />
+                            </svg>
+                        </button>
+                        <h1 class="text-2xl font-bold hidden md:block">
+                            managepro&trade;
+                        </h1>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <label
+                            class="input flex items-center border rounded-md p-2"
+                        >
+                            <svg
+                                class="h-5 w-5 opacity-50 mr-2"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </svg>
+                            <input
+                                type="search"
+                                class="input-ghost"
+                                placeholder="Search"
+                                list="suggestions"
+                            />
+                            <datalist id="suggestions">
+                              <option value="Chrome"></option>
+                              <option value="Firefox"></option>
+                              <option value="Safari"></option>
+                              <option value="Opera"></option>
+                              <option value="Edge"></option>
+                            </datalist>
+                            <kbd class="kbd kbd-sm">ctrl</kbd
+                            ><kbd class="kbd kbd-sm">K</kbd>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="dropdown dropdown-end">
+                            <div tabindex="0" role="button" class="btn m-1">
+                                <div class="avatar">
+                                    <div
+                                        class="w-8 rounded-full ring ring-success ring-offset-base-100 ring-offset-2"
+                                    >
+                                        <img
+                                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                                            alt="User Avatar"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <ul
+                                tabindex="0"
+                                class="dropdown-content menu rounded-box w-52 p-2 shadow-sm z-50"
+                            >
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                <li><a href="#my_modal_8">Setting</a></li>
+                                <li><a href="#my_modal_9">Help</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Main dynamic content block -->
+                <main class="flex-1 overflow-y-auto">
+                    {% block breadcrumb %} {% endblock%}
+                    <h1 class="text-2xl font-bold">
+                        {% block heading%}Layout Page{% endblock%}
+                    </h1>
+                    <div class="divider"></div>
+                    {% block content %}
+                    <!-- Page-specific content goes here -->
+                    {% endblock %}
+                    <footer
+                        class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4"
+                    >
+                        <aside>
+                            <p id="copyright">Copyright © <span id="year"></span> - All rights reserved by WAHEEDSONS ENGINEERING </p>
+                        </aside>
+                    </footer>
+                </main>
+            </div>
+        </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const sidebar = document.getElementById("sidebar");
+                const main = document.getElementById("main");
+                const toggleBtn = document.getElementById("menuToggleButton");
+
+                toggleBtn.addEventListener("click", () => {
+                    const hidden = sidebar.classList.toggle("hidden");
+                    if (hidden) {
+                        main.classList.add("w-full");
+                    } else {
+                        main.classList.remove("w-full");
+                    }
+                });
+
+                const logoutLink = document.getElementById("logoutLink");
+                if (logoutLink) {
+                    logoutLink.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        const form = document.createElement("form");
+                        form.method = "POST";
+                        form.action = this.getAttribute("href");
+
+                        const csrfToken = "{{ csrf_token }}";
+                        const csrfInput = document.createElement("input");
+                        csrfInput.type = "hidden";
+                        csrfInput.name = "csrfmiddlewaretoken";
+                        csrfInput.value = csrfToken;
+
+                        form.appendChild(csrfInput);
+                        document.body.appendChild(form);
+                        form.submit();
+                    });
+                }
+
+                // Keyboard Shortcuts
+
+                document.addEventListener("keydown", function (e) {
+                    if (e.altKey) {
+                        let path = null;
+
+                        switch (e.key.toLowerCase()) {
+                            case "d":
+                                path = "/erp/dashboard";
+                                break;
+                            case "t":
+                                path = "/erp/todo";
+                                break;
+                            // case "f":
+                            //     path = "/file-manager";
+                            //     break;
+                            case "i":
+                                path = "/erp/pos/invoice";
+                                break;
+                            case "x":
+                                path = "/erp/pos/extra-income";
+                                break;
+                            case "q":
+                                path = "/erp/pos/quotation";
+                                break;
+                            case "s":
+                                path = "/erp/pos/suppliers";
+                                break;
+                            case "r":
+                                path = "/erp/pos/receipt";
+                                break;
+                            case "e":
+                                path = "/erp/pos/expenses";
+                                break;
+                            // nested combos
+                            case "p":
+                                handleGroup("p");
+                                break;
+                            case "h":
+                                handleGroup("h");
+                                break;
+                            case "z":
+                                handleGroup("z");
+                                break;
+                            case "m":
+                                handleGroup("m");
+                                break;
+                            case "c":
+                                handleGroup("c");
+                                break;
+                            default:
+                                return;
+                        }
+
+                        if (path && window.location.pathname !== path) {
+                            e.preventDefault();
+                            window.location.href = path;
+                        }
+                    }
+                });
+
+                let comboState = {
+                    p: false,
+                    h: false,
+                    z: false,
+                    i: false,
+                    m: false,
+                    c: false,
+                };
+
+                function handleGroup(group) {
+                    comboState[group] = true;
+                    setTimeout(() => (comboState[group] = false), 800); // reset after 800ms
+                }
+
+                document.addEventListener("keydown", function (e) {
+                    const key = e.key.toLowerCase();
+
+                    if (e.altKey) {
+                        // POS
+                        if (comboState["m"] && key === "n")
+                            return window.location.assign("/erp/pos/inventory");
+                        if (comboState["m"] && key === "c")
+                            return window.location.assign("/erp/pos/customer");
+                        if (comboState["m"] && key === "f")
+                            return window.location.assign("/erp/file-manager");
+                        // Chat
+                        if (comboState["c"] && key === "i")
+                            return window.location.assign("/erp/chat/inbox");
+                        if (comboState["c"] && key === "s")
+                            return window.location.assign("/erp/chat/sent");
+
+                        // Project Management
+                        if (comboState["p"] && key === "a")
+                            return window.location.assign("/project/analytics");
+                        if (comboState["p"] && key === "d")
+                            return window.location.assign("/project/projects");
+                        if (comboState["p"] && key === "m")
+                            return window.location.assign("/project/members");
+                        if (comboState["p"] && key === "i")
+                            return window.location.assign("/project/inventory");
+                        if (comboState["p"] && key === "x")
+                            return window.location.assign("/project/expenses");
+                        if (comboState["p"] && key === "r")
+                            return window.location.assign("/project/reports");
+                        if (comboState["p"] && key === "t")
+                            return window.location.assign("/project/tasks");
+
+                        // HR
+                        if (comboState["h"] && key === "e")
+                            return window.location.assign("/hr/employees");
+                        if (comboState["h"] && key === "p")
+                            return window.location.assign("/hr/payroll");
+                        if (comboState["h"] && key === "b")
+                            return window.location.assign("/hr/benefits");
+                        if (comboState["h"] && key === "r")
+                            return window.location.assign("/hr/reports");
+                        if (comboState["h"] && key === "t")
+                            return window.location.assign("/hr/training");
+                        if (comboState["h"] && key === "n")
+                            return window.location.assign("/hr/recruitment");
+                        if (comboState["h"] && key === "l")
+                            return window.location.assign("/hr/leave");
+
+                        // Finance
+                        if (comboState["z"] && key === "g")
+                            return window.location.assign(
+                                "/finance/general-ledger",
+                            );
+                        if (comboState["z"] && key === "a")
+                            return window.location.assign(
+                                "/finance/fixed-assets",
+                            );
+                        if (comboState["z"] && key === "t")
+                            return window.location.assign("/finance/taxation");
+                        if (comboState["z"] && key === "c")
+                            return window.location.assign("/finance/cash-flow");
+                        if (comboState["z"] && key === "b")
+                            return window.location.assign("/finance/budgeting");
+                        if (comboState["z"] && key === "i")
+                            return window.location.assign(
+                                "/finance/investments",
+                            );
+                        if (comboState["z"] && key === "s")
+                            return window.location.assign(
+                                "/finance/financial-statements",
+                            );
+                        if (comboState["z"] && key === "r")
+                            return window.location.assign(
+                                "/finance/financial-reporting",
+                            );
+                        if (comboState["z"] && key === "m")
+                            return window.location.assign(
+                                "/finance/risk-management",
+                            );
+                    }
+                });
+                
+                document.addEventListener("keydown", function (e) {
+                    if (e.ctrlKey && e.key.toLowerCase() === "k") {
+                        e.preventDefault();
+                        const searchInput = document.querySelector(
+                            'input[type="search"]',
+                        );
+                        if (searchInput) {
+                            searchInput.focus();
+                        }
+                    }
+                });
+                document.getElementById("year").textContent = new Date().getFullYear();
+            });
+        </script>
+        {% block script %}
+        {% endblock %}
+    </body>
+</html>
