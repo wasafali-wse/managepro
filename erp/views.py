@@ -26,6 +26,9 @@ def customer_detail(request, id):
     data = {
         'id': id,
         'name': 'John Doe',
+        'phone':'03332278859',
+        'phone2':'03138163302',
+        'address':'123 Main St, City, Country',
     }
     return render(request, 'erp/customer_detail.html' , data)
 

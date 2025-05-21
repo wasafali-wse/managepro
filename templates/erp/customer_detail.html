@@ -2,16 +2,402 @@
 
 {% block title %}Customer Detail{% endblock %}
 {% block link %}{% endblock %}
-{% block center %}{% endblock %}
-{% block content %}{% endblock %}
-{% block heading %}Cusotmer {{name}}{% endblock %}
+{% block center %}
+<dialog id="edit" class="modal">
+  <div class="modal-box w-11/12 max-w-5xl">
+    <div class ='grid grid-cols-1 gap-2 p-2 w-96 h-auto'>
+      <div class='col-span-1'>
+        <h3 class="font-bold text-2xl">Edit Customer</h3>
+      <label class="input validator">
+        <input
+          type="input"
+          required
+          placeholder="Name"
+          pattern="[A-Za-z][A-Za-z0-9\-]*"
+          minlength="3"
+          maxlength="30"
+          title="Only letters, numbers or dash"
+          id="edit-customer-name"  name="customer_name"      />
+      </label>
+      </div>
+      <div class='col-span-1'>
+        <input
+          type="number"
+          class="input validator"
+          required
+          placeholder="Type contact of 11 digit"
+          min="11"
+          max="11"
+          title="Must be between be 11 digit"
+          id="edit-customer-phone1" name="customer_phone1"     />
+      </div>
+      <div class='col-span-1'>
+        <input
+          type="number"
+          class="input validator"
+          placeholder="Type a second contact of 11 digit optional"
+          min="11"
+          max="11"
+          title="Must be between be 11 digit"
+          id="edit-customer-phone2" name="customer_phone2"     />
+        <p class="label">Optional</p>
+      </div>
+      <div class='col-span-1'>
+        <textarea class="textarea" placeholder="Bio" id="edit-customer-bio" name="customer_bio"></textarea> <p class="label">Optional</p>
+      </div>
+      <div class='col-span-1'>
+        <input type="submit" value="Submit" class="btn" />
+      </div>
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+{% comment %} modal for editing items {% endcomment %}
+
+<dialog id="item" class="modal">
+  <div class="modal-box w-11/12 max-w-5xl">
+    <div class ='grid grid-cols-2 gap-2 p-2 w-full h-auto'>
+      <div class='col-span-2'>
+        <h3 class="font-bold text-2xl">Edit Item</h3>
+      </div>
+      <div class='col-span-1'>
+        <input type="text" placeholder="Description" class="input" id="edit-item-description" name="item_description" /> </div>
+      <div class='col-span-1'>
+        <select class="select" id="edit-item-status" name="item_status"> 
+          <option>Checking</option>
+          <option>Pending</option>
+          <option>Return</option>
+          <option>Repairing</option>
+          <option>Ready</option>
+          <option>Recieved</option>
+        </select>
+      </div>
+      <div class='col-span-1'>
+        <input type="number" placeholder="Amount" class="input" id="edit-item-amount" name="item_amount" /> </div>
+      <div class='col-span-1'>
+        <input type="number" placeholder="Discount" class="input" id="edit-item-discount" name="item_discount" /> </div>
+      <div class='col-span-1'>
+        <input type="number" placeholder="Advance" class="input" id="edit-item-advance" name="item_advance" /> </div>
+      <div class='col-span-1'>
+        <input type="number" placeholder="Balance" class="input" id="edit-item-balance" name="item_balance" /> </div>
+      <div class='col-span-1'>
+        <textarea class="textarea" placeholder="Bio" id="edit-item-bio" name="item_bio"></textarea> </div>
+      <div class='col-span-1'>
+        <input type="submit" value="Submit" class="btn" />
+      </div>
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+{% endblock %}
+
+{% block heading %}Customer {{name}}{% endblock %}
 {% block breadcrumb %}
 <div class="breadcrumbs text-sm">
     <ul>
       <li><a>pos</a></li>
-      <li><a>Customer</a></li>
+      <li><a href='{% url "customer" %}'>Customer</a></li>
       <li>Customer Detail</li>
     </ul>
   </div>
 {% endblock %}
-{% block script %}{% endblock %}
+
+{% block content %}
+<p>Customer ID: {{ id }}</p>
+
+<div class='grid grid-cols-3 gap-4 p-3'>
+    <div class='col-span-2 rounded-2xl bg-base-200 p-3'>
+        <h3 class='text-2xl font-bold'>Customer Information</h3>
+        <p>Name: {{ name }}</p>
+        <p>Phone: {{ phone }}</p>
+        <p>Phone 2: {{ phone2 }}</p>
+        <p>Address: {{ address }}</p>
+    </div>
+    <div class='col-span-1 rounded-2xl bg-base-200 p-3 '>
+      <h3 class='text-2xl font-bold'>Quick Actions</h3>
+      <button class='btn btn-primary w-full rounded-xl ' onclick="openEditModal(this)" data-name={{name}} data-phone={{phone}} data-phone2={{phone2}} data-address={{address}}>Edit</button>
+    </div>
+    <div class='col-span-3 rounded-2xl bg-base-200 h-64 overflow-y-auto'>
+      <h3 class='text-2xl font-bold p-3'>Items of the customer {{ name }}</h3>
+      <div class="">
+        <table class="table table-zebra table-sm table-pin-rows" id="items-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Sno</th>
+              <th>Description</th>
+              <th>Status</th> <!-- checking,pending ,return ,repairing, ready ,recieved  with date-->
+              <th>Report</th> <!-- technical data for the respective item -->
+              <th>Label</th>  
+              <th>Amount</th>
+              <th>Discount</th>
+              <th>Advance</th>
+              <th>Balance</th>
+              <th>Total Amount</th>
+              <th>edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1</th>
+              <td>02359</td>
+              <td>UPS inverter</td>
+              <td>Repairing</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>1000</td>
+              <td>100</td>
+              <td>0</td>
+              <td>900</td>
+              <td>900</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="02359" data-description="UPS inverter" data-status="Repairing" 
+                        data-amount="1000" data-discount="100" data-advance="0" data-balance="900" 
+                        data-bio="Technical details here">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>04567</td>
+              <td>Air Conditioner</td>
+              <td>Installation</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>2000</td>
+              <td>150</td>
+              <td>200</td>
+              <td>1650</td>
+              <td>1650</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="04567" data-description="Air Conditioner" data-status="Installation" 
+                        data-amount="2000" data-discount="150" data-advance="200" data-balance="1650" 
+                        data-bio="Requires special tools">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>06789</td>
+              <td>Generator</td>
+              <td>Maintenance</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>5000</td>
+              <td>500</td>
+              <td>1000</td>
+              <td>3500</td>
+              <td>3500</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="06789" data-description="Generator" data-status="Maintenance" 
+                        data-amount="5000" data-discount="500" data-advance="1000" data-balance="3500" 
+                        data-bio="Check oil levels">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>08912</td>
+              <td>Washing Machine</td>
+              <td>Repair</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>3000</td>
+              <td>200</td>
+              <td>500</td>
+              <td>2300</td>
+              <td>2300</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="08912" data-description="Washing Machine" data-status="Repair" 
+                        data-amount="3000" data-discount="200" data-advance="500" data-balance="2300" 
+                        data-bio="Replace faulty part">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>5</th>
+              <td>01234</td>
+              <td>Refrigerator</td>
+              <td>Installation</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>2500</td>
+              <td>250</td>
+              <td>300</td>
+              <td>1950</td>
+              <td>1950</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="01234" data-description="Refrigerator" data-status="Installation" 
+                        data-amount="2500" data-discount="250" data-advance="300" data-balance="1950" 
+                        data-bio="Ensure proper ventilation">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>6</th>
+              <td>05678</td>
+              <td>Microwave Oven</td>
+              <td>Repair</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>1500</td>
+              <td>150</td>
+              <td>200</td>
+              <td>1150</td>
+              <td>1150</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="05678" data-description="Microwave Oven" data-status="Repair" 
+                        data-amount="1500" data-discount="150" data-advance="200" data-balance="1150" 
+                        data-bio="Replace door handle">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>7</th>
+              <td>07890</td>
+              <td>Dishwasher</td>
+              <td>Maintenance</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>1800</td>
+              <td>180</td>
+              <td>300</td>
+              <td>1320</td>
+              <td>1320</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="07890" data-description="Dishwasher" data-status="Maintenance" 
+                        data-amount="1800" data-discount="180" data-advance="300" data-balance="1320" 
+                        data-bio="Clean filters regularly">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>8</th>
+              <td>09876</td>
+              <td>Electric Fan</td>
+              <td>Repair</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>800</td>
+              <td>80</td>
+              <td>100</td>
+              <td>620</td>
+              <td>620</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="09876" data-description="Electric Fan" data-status="Repair" 
+                        data-amount="800" data-discount="80" data-advance="100" data-balance="620" 
+                        data-bio="Replace faulty motor">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>9</th>
+              <td>06543</td>
+              <td>LED TV</td>
+              <td>Repair</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>4000</td>
+              <td>400</td>
+              <td>500</td>
+              <td>3100</td>
+              <td>3100</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="06543" data-description="LED TV" data-status="Repair" 
+                        data-amount="4000" data-discount="400" data-advance="500" data-balance="3100" 
+                        data-bio="Screen replacement needed">edit</button>
+              </td>
+            </tr>
+            <tr>
+              <th>10</th>
+              <td>05432</td>
+              <td>Smartphone</td>
+              <td>Repair</td>
+              <td>click</td>
+              <td>Print</td>
+              <td>2000</td>
+              <td>200</td>
+              <td>300</td>
+              <td>1500</td>
+              <td>1500</td>
+              <td>
+                <button class='btn btn-primary btn-sm' onclick="openItemModal(this)" 
+                        data-sno="05432" data-description="Smartphone" data-status="Repair" 
+                        data-amount="2000" data-discount="200" data-advance="300" data-balance="1500" 
+                        data-bio="Battery replacement">edit</button>
+              </td>
+            </tr>
+            <!-- Repeat similar rows as needed with correct data attributes, ensuring onclick calls openItemModal(this) -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+  const itemModal = document.getElementById('item');
+
+  function openItemModal(button) {
+    const sno = button.dataset.sno;
+    const description = button.dataset.description;
+    const status = button.dataset.status;
+    const amount = button.dataset.amount;
+    const discount = button.dataset.discount;
+    const advance = button.dataset.advance;
+    const balance = button.dataset.balance;
+    const bio = button.dataset.bio || '';
+
+    itemModal.querySelector('h3').textContent = `Edit Item: Sno ${sno}`;
+    itemModal.querySelector('input[placeholder="Description"]').value = description;
+    itemModal.querySelector('select').value = status;
+    itemModal.querySelector('input[placeholder="Amount"]').value = amount;
+    itemModal.querySelector('input[placeholder="Discount"]').value = discount;
+    itemModal.querySelector('input[placeholder="Advance"]').value = advance;
+    itemModal.querySelector('input[placeholder="Balance"]').value = balance;
+    itemModal.querySelector('textarea[placeholder="Bio"]').value = bio;
+
+    itemModal.showModal();
+  }
+
+  // Submit handler for the Item Modal submit button
+  {% comment %} const itemModalSubmitButton = itemModal.querySelector('input[type="submit"]');
+  if (itemModalSubmitButton) {
+    itemModalSubmitButton.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent form submission since no backend specified
+      // You can add your save logic here
+      itemModal.close();
+    });
+  } {% endcomment %}
+
+  // Optional: Add submit handling for the Customer Edit modal if needed similarly
+
+  const editModal = document.getElementById('edit');
+  function openEditModal(button) {
+    const name = button.dataset.name;
+    const phone = button.dataset.phone;
+    const phone2 = button.dataset.phone2;
+    const address = button.dataset.address;
+
+    editModal.querySelector('h3').textContent = `Edit Customer: ${name}`;
+    editModal.querySelector('input[name="customer_name"]').value = name;
+    editModal.querySelector('input[name="customer_phone1"]').value = phone;
+    editModal.querySelector('input[name="customer_phone2"]').value = phone2;
+    editModal.querySelector('textarea[name="customer_bio"]').value = address;
+
+    editModal.showModal();
+  }
+</script>  
+{% endblock %}
